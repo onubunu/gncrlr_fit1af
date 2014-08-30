@@ -1,0 +1,275 @@
+/* Einzelne Aktionsbox mit grossem Bild */
+#aktion1 {
+  vertical-align: top; 
+  margin:0px auto auto auto; 
+  img {
+    padding: 10px;
+    height: 170px;
+    width: auto;
+    max-height: 170px;
+    min-height: 160px;
+    max-width: 170px;
+  }
+}
+/*****************/
+
+/* Einzelne Aktionsbox mit kleinem Bild */
+#aktion2 {
+  vertical-align: top; 
+  margin:0px auto auto auto; 
+  img {
+    padding: 10px;
+    height: 60px;
+    width: auto;
+    max-height: 60px;
+    min-height: 60px;
+    max-width: 170px;
+  }
+}
+/*****************/
+
+/* Überschrift der ganzen Aktionsboxen */
+h1.aktion1 {
+  background: #333333;
+  font-size: 17px;
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  width:870px;
+  line-height: 24px;
+  margin:10px 10px 0px 5px;
+  color: #fff;
+}
+/*****************/
+
+/* Einzelne Aktionsbox layout */
+table.aktion1 {
+  margin:10px 5px 10px 5px;
+  float: left; 
+  position:relative; 
+  vertical-align: top; 
+  border: 5px solid #CD853F ;
+  height: 240px;
+  top:0px;
+  width: 215px;
+  &:hover {  
+    border: 5px solid #333333;
+    h1.inbox1 {
+      color: white;
+      background-color: #333333;
+    }
+  }
+}
+td.aktion1 {
+  font-weight: bold; 
+  height: 240px;
+  top:0px;
+  width: 100%;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: top;
+  cursor:pointer;
+  background: white;
+  padding: 0;
+}
+h1.inbox1 {
+  font-size: 17px;
+  padding: 5px 5px 5px 5px;
+  line-height: 20px;
+  right: 5px;
+  left: 0px;
+  bottom: 1px;
+  font-weight: bold;
+  margin:0px 0px 0px 0px;
+  position:absolute; 
+  background-color: #CD853F ;
+  text-align: center;
+  color: #423f3c;
+}
+/*****************/
+
+/* Einzelne Aktions-Solobox layout */
+table.aktion2 {
+  margin:10px 5px 10px 5px;
+  float: left; 
+  position:relative; 
+  vertical-align: top; 
+  border: 5px solid #333333;
+  height: 240px;
+  top:0px;
+  width: 215px;
+}
+td.aktion2 {
+  font-weight: bold;
+  height: 240px;
+  top:0px;
+  width: 100%;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: top; 
+  background: white;
+  padding: 0;
+}
+h1.inbox2 {
+  font-size: 17px;
+  padding: 5px 5px 5px 5px;
+  line-height: 20px;
+  right: 5px;
+  left: 0px;
+  bottom: 1px;
+  font-weight: bold;
+  margin:0px 0px 0px 0px;
+  position:absolute; 
+  background-color: #333333;
+  text-align: center;
+  color: white;
+  div.minitxt {
+    font-size: 12px; 
+    color: white; 
+    position:absolute; 
+    padding: 5px 0px 0px 77px;
+  }
+}
+/*****************/
+
+/* Kommentar für Soloboxen */
+table.solobox_comm { 
+  margin-left: 240px;
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  border: 0px solid;
+  position:relative; 
+  vertical-align: top; 
+  top: 10px;
+  width:auto; 
+  height:auto; 
+  td {
+    vertical-align: top; 
+    width: 705px;
+    max-width: 705px;
+    min-height: 205px;
+    height: 255px;
+    color: #333;
+    line-height: 25px;
+    font-size: 18px;
+    text-align: left;
+  }
+}
+/*****************/
+
+/* cart */
+div.cart { 
+  text-align:center; 
+  margin-left:351px; 
+  margin-right:0px; 
+  width:281px;
+}
+/*****************/
+
+/* cart1 Zeichen (+/=) zwischen den Aktionsboxen */
+table.cart1 {
+  margin:10px 0 10px 0;
+  float: left; 
+  position:relative; 
+  vertical-align: top; 
+  border: 5px solid none;
+  height: 240px;
+  top:0px;
+  max-width: 60px;
+  min-width: 60px;
+}
+td.cart1 {
+  font-weight: bold;
+  position:relative; 
+  height: 240px;
+  top:0px;
+  width: 85px;
+  color: #CD853F;
+  font-size: 70px;
+  text-align: justify;
+  text-align: center;
+  vertical-align: center;
+  background: none;
+  padding: 0;
+}
+/*****************/
+
+/* cart2 Ergebnis + Buttons */
+table.cart2 {
+  margin:10px 0 10px 0;
+  float: left; 
+  position:relative; 
+  vertical-align: top; 
+  border: 5px solid none;
+  height: 240px;
+  top:0px;
+  max-width: 290px;
+  min-width: 290px;
+}
+td.cart2 {
+  font-weight: bold;
+  position:relative; 
+  height: 240px;
+  top:0px;
+  width: 290px;
+  color: #333333;
+  text-decoration: underline;
+  font-size: 60px;
+  text-align: justify;
+  text-align: center;
+  vertical-align: center;
+  background: none;
+  padding: 0;
+}
+h1.cart2 {
+  font-size: 18px;
+  padding: 5px 5px 5px 5px;
+  line-height: 35px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  font-weight: bold;
+  margin:0px 0px 0px 0px;
+  position:absolute; 
+  background-color: none;
+  text-align: center;
+  color: white;
+}
+/*****************/
+
+/* back-Link */
+div.back_ {
+  font-weight: bold;
+  margin: -10px 0px 0px 10px; 
+}
+/*****************/
+
+/* Bestelldetails */
+div.order_ { 
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+}
+/*****************/
+
+/* Bestelldetails */
+div.tab_ { 
+  width:150px;
+  display:block;
+  float:left;
+  font-weight: lighter;
+}
+/*****************/
+
+/* Handylogos im Header */
+#h_logo_ {
+  position:absolute; 
+  margin-left:215px; margin-top: -95px; 
+  img{
+    padding: 5px 10px 5px 5px;
+  }
+}
+/*****************/

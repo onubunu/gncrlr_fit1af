@@ -1,0 +1,93 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@order.errors.count, "Fehler") %>
+      </h2>
+      <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% @cart.line_items.each do |item| %>
+    <div class="order_">
+      <h4>Bestelldetails:</h4>
+      <div class="tab_"><%= "Netz: " %></div><%= Netz.find(:first, :conditions => "id = " + item.tariff.netz_id.to_s).n_name %><br />
+      <div class="tab_"><%= "Tarif: " %></div><%= item.tariff.t_name %><br />
+      <div class="tab_"><%= "Grundgebühr: " %></div><%= number_to_currency(Tariff.find(:first, :conditions => "id = " + item.tariff.id.to_s).t_costs) %><br />
+      <div class="tab_"><%= "Handy: " %></div><%= Phone.find(:first, :conditions => "id = " + item.phone.id.to_s).p_brand + " " + Phone.find(:first, :conditions => "id = " + item.phone.id.to_s).p_typ %><br />
+
+      <% @cart.line_items.each do |item| %>
+        <% if item.p_price - item.tariff.v_price <= 0 %>
+          <% p = 1 %>
+        <% else %>
+          <% p = item.p_price - item.tariff.v_price %>
+        <% end %>
+        <div class="tab_"><%= "Handypreis: " %></div><%= number_to_currency(p) %>
+        <%= f.hidden_field :o_price, :value => p %>
+      <% end %>
+
+      <%= f.hidden_field :tariff_id, :value => item.tariff.id %>
+      <%= f.hidden_field :phone_id, :value => item.phone.id %>
+      <%= f.hidden_field :order_no, :value => Time.now.strftime("%S%M%H%d%m%y").to_s + session[:user_id].to_s %>
+      <%= f.datetime_select :o_date, { :discard_day => true, :discard_month => true, :discard_year => true, :discard_hour => true, :discard_second => true } %>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="order_">
+      <h4>Persönliche Daten:</h4>
+      <%= f.hidden_field :user_id, :value => session[:user_id] %>
+      <% user = User.find(:first, :conditions => "id = " + session[:user_id].to_s) %>
+      <div class="tab_"><%= "Anrede: " %></div><%= user.title %><br />
+      <div class="tab_"><%= "Vorname: " %></div><%= user.prename %><br />
+      <div class="tab_"><%= "Nachname: " %></div><%= user.surname %><br />
+      <div class="tab_"><%= "Geburtsdatum: " %></div><%= user.birth_date.strftime("%d.%m.%Y") %>
+    </div>
+
+    <br />
+    <br />   
+
+    <div class="order_">
+      <h4>Anschrift:</h4>
+      <div class="tab_"><%= "Straße: " %></div><%= user.street %><br />
+      <div class="tab_"><%= "Postleitzahl: " %></div><%= user.zip %><br />
+      <div class="tab_"><%= "Ort: " %></div><%= user.city %><br />
+    </div>
+
+    <br />
+    <br />
+
+    <div class="order_">
+      <h4>Bankverbindung:</h4>
+      <div class="tab_"><%= "Bank: " %></div><%= user.bank %><br />
+      <div class="tab_"><%= "Bankleitzahl: " %></div><%= user.bankzip %><br />
+      <div class="tab_"><%= "Kontonummer: " %></div><%= user.bankaccount %><br />
+      <%= f.hidden_field :bank, :value => user.bank %>
+      <%= f.hidden_field :bankzip, :value => user.bankzip %>
+      <%= f.hidden_field :bankaccount, :value => user.bankaccount %>
+    </div>
+
+    <br />
+
+    <div class="order_">
+      <span style="width:30px;display:block;float:left;"><%= f.check_box :agbs %></span><%= link_to "AGB akzeptieren", store_agb_path %><br />
+    </div> 
+
+    <br />
+    <br />
+
+    <h3><%= link_to "Persönliche Daten bearbeiten", edit_user_path(current_user)%></h3><br />  
+    <div class="actions">
+      <%= f.submit "Verbindlich bestellen" %>
+    </div>
+
+    <br />
+
+  <% end %>
+<% end %>
+

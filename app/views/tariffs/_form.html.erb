@@ -1,0 +1,45 @@
+<%= form_for(@tariff) do |f| %>
+  <% if @tariff.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tariff.errors.count, "error") %> prohibited this tariff from being saved:</h2>
+
+      <ul>
+      <% @tariff.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :t_name %><br />
+    <%= f.text_field :t_name %>
+  </div>
+  <div class="field">
+    <%= f.label :t_comment %><br />
+    <%= f.text_area :t_comment %>
+  </div>
+  <div class="field">
+    <%= f.label :netz_id %><br />
+    <%= f.number_field :netz_id %>
+  </div>
+  <div class="field">
+    <%= f.label :t_commission %><br />
+    <%= f.number_field :t_commission %>
+  </div>
+  <div class="field">
+    <%= f.label :t_profit %><br />
+    <%= f.number_field :t_profit %>
+  </div>
+  <div class="field">
+    <%= f.label :t_info %><br />
+    <%= f.text_area :t_info %>
+  </div>
+  <div class="field">
+    <%= f.label :t_costs %><br />
+    <%= f.number_field :t_costs %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

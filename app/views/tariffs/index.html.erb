@@ -1,0 +1,21 @@
+<% Netz.where("id <> 0").sort_by{ |netz| [netz.n_name] }.each do |netz| %>
+  <table>
+    <td>
+      <div id="aktion2">
+        <h1 class="aktion1"><%= netz.n_name + " Tarife (#{Tariff.where(:netz_id => netz.id).count})"%></h1><br />
+        <% Tariff.where(:netz_id => netz.id).sort_by{ |tariff| [tariff.netz_id, tariff.t_name] }.each do |tariff| %>
+          <table class="aktion1">
+            <td class="aktion1" ONCLICK = "location.href='<%= tariffs_path %>/<%= tariff.id %>';">
+              <%= truncate(tariff.t_comment, length: 100) %><br />
+              <%=image_tag((Netz.find(:first, :conditions => "id = " + tariff.netz_id.to_s).n_logo_url)) %>
+              <h1 class="inbox1"><%= tariff.t_name %><br />
+                <%= Netz.find(:first, :conditions => "id = " + tariff.netz_id.to_s).n_name %><br />
+                <%= "Monatlich " + number_to_currency(tariff.t_costs) %>
+              </h1>
+            </td>
+          </table>  
+        <% end %>
+      </div>
+    </td>
+  </table>
+<% end %>

@@ -1,0 +1,66 @@
+<table>
+  <td>
+    <div id="aktion1">
+      <h1 class="aktion1">
+        <%= Netz.find(:first, :conditions => "id = " + @tariff.netz_id.to_s).n_name + " " + @tariff.t_name %>
+      </h1>
+      <br />      
+      <table class="aktion2">
+        <td class="aktion2">
+          <%= image_tag((Netz.find(:first, :conditions => "id = " + @tariff.netz_id.to_s).n_logo_url)) %>
+          <h1 class="inbox2">
+            <%= @tariff.t_name %>
+            <br />
+            <%= Netz.find(:first, :conditions => "id = " + @tariff.netz_id.to_s).n_name %>
+          </h1>
+        </td>
+      </table>      
+      <table class="solobox_comm">
+        <td>
+          <%= "Monatliche Grundgebühr: " + number_to_currency(@tariff.t_costs) %>
+          <br />
+          <br />
+          <%= @tariff.t_comment %>
+          <br />
+        </td>
+      </table>
+    </div>
+  </td>
+</table>
+
+<table>
+  <td>
+    <div id="aktion2">
+      <h1 class="aktion1">
+        <%= "Handys mit " + Netz.find(:first, :conditions => "id = " + @tariff.netz_id.to_s).n_name + " " + @tariff.t_name %>
+      </h1>
+      <br />
+      <% Phone.where("id <> 0").sort_by{ |phone| [phone.p_brand, phone.p_typ]  }.each do |phone| %>
+        <table class="aktion1">
+          <td class="aktion2">
+            <%= phone.p_brand + " " + phone.p_typ %><br />+<br />
+            <%= Netz.find(:first, :conditions => "id = " + @tariff.netz_id.to_s).n_name %><br /><%= @tariff.t_name %><br />
+            <%= image_tag(phone.p_image_url) %>
+            <%= image_tag(Netz.find(:first, :conditions => "id = " + @tariff.netz_id.to_s).n_logo_url) %><br />
+            <%= link_to "Handyinfo", phone_path(phone.id) %>
+            <h1 class="inbox1">
+              <% if phone.p_price - @tariff.v_price <= 0 %>
+                <% p = 1 %>
+              <% else %>
+                <% p = phone.p_price - @tariff.v_price %>
+              <% end %>
+              <%= number_to_currency(p) %><br />   
+              <%= button_to "in den Warenkorb", line_items_path(tariff_id: @tariff.id, phone_id: phone.id), data: { confirm:
+                if @cart.total_item == 1
+                  "Soll der aktuelle Warenkorb ersetzt werden?" 
+                end
+              }  %>            
+            </h1>
+          </td>
+        </table>
+      <% end %>
+    </div>
+  </td>
+</table>
+
+

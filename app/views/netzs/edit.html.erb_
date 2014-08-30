@@ -1,0 +1,6 @@
+<h1>Editing netz</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @netz %> |
+<%= link_to 'Back', netzs_path %>

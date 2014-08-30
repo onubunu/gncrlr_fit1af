@@ -1,0 +1,65 @@
+<table>
+	<td>
+		<div id="aktion1">
+		  	<h1 class="aktion1"><%= @netz.n_name %></h1>
+        <br />
+		    <table class="aktion2">
+				  <td class="aktion2">
+					 <%= image_tag(@netz.n_logo_url) %>
+					 <h1 class="inbox2"><%= @netz.n_name %></h1>
+				  </td>
+		    </table>
+		    <table class="solobox_comm">
+		      <td>
+		        <%= @netz.n_comment %>
+		      </td>
+		    </table>
+		</div>
+	</td>
+</table>
+
+<br />
+<table>
+  <td>
+    <div id="aktion2">
+      <h1 class="aktion1">Alle <%= @netz.n_name %> Tarife</h1>
+      <br />
+      <% Tariff.where(:netz_id => params[:id]).each do |tariff| %>
+        <table class="aktion1">
+          <td class="aktion1" ONCLICK = "location.href='<%= tariffs_path %>/<%= tariff.id %>';">
+            <%= truncate(tariff.t_comment, length: 100) %>
+            <br />
+            <%=image_tag((Netz.find(:first, :conditions => "id = " + tariff.netz_id.to_s).n_logo_url)) %>
+            <h1 class="inbox1">
+              <%= tariff.t_name %>
+              <br />
+              <%= Netz.find(:first, :conditions => "id = " + tariff.netz_id.to_s).n_name %>
+            </h1>
+          </td>
+        </table>
+      <% end %>
+    </div>
+	</td>
+</table>
+
+
+<table>
+  <td>
+    <div id="aktion1">
+      <h1 class="aktion1">Andere Netze</h1>
+      <br />
+      <% Netz.where("id <> 0" && "id <>" + params[:id] ).sort_by{ rand }.each do |netz| %>
+        <table class="aktion1">
+          <td class="aktion1" ONCLICK = "location.href='<%= netzs_path %>/<%= netz.id %>';">
+            <%= image_tag(netz.n_logo_url) %>
+            <h1 class="inbox1"><%= netz.n_name %></h1>
+          </td>
+        </table>  
+      <% end %>
+    </div>
+  </td>
+</table>
+
+
+
+

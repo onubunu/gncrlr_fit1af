@@ -1,0 +1,78 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br />
+  <div class="order_">
+    <h4>Zugangsdaten:</h4>
+    <div class="field">
+      <%= f.label "Email:" %><br />
+      <%= f.text_field :email  %>
+    </div>
+    <div class="field">
+      <%= f.label "Passwort:" %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+    <%= f.label "Passwort bestätigen:" %><br />
+    <%= f.password_field :password_confirmation %>
+    </div>
+    <br />
+    <h4>Persönliche Daten:</h4>
+    <div class="field">
+      <%= f.label "Anrede:" %><br />
+      <%= f.select :title, ["Frau", "Herr"], :prompt => "Bitte wählen" %>
+    </div>
+    <div class="field">
+      <%= f.label "Vorname:" %><br />
+      <%= f.text_field :prename %>
+    </div>
+    <div class="field">
+      <%= f.label "Nachname:" %><br />
+      <%= f.text_field :surname %>
+    </div>
+    <div class="field">
+      <%= f.label "Geburtsdatum:" %><br />
+      <%= f.date_select :birth_date, :prompt => { :day => 'Tag', :month => 'Monat', :year => 'Jahr' } , :start_year => Date.current.year - 18, :end_year => 1900 %>
+    </div>
+    <br />
+    <h4>Anschrift:</h4>
+    <div class="field">
+      <%= f.label "Straße:" %><br />
+      <%= f.text_field :street %>
+    </div>
+    <div class="field">
+      <%= f.label "Postleitzahl" %><br />
+      <%= f.text_field :zip %>
+    </div>
+    <div class="field">
+      <%= f.label "Stadt" %><br />
+      <%= f.text_field :city %>
+    </div>
+    <br />
+    <h4>Bankverbindung:</h4>
+    <div class="field">
+      <%= f.label "Bank:" %><br />
+      <%= f.text_field :bank %>
+    </div>
+    <div class="field">
+      <%= f.label "Bankleitzahl:" %><br />
+      <%= f.text_field :bankzip %>
+    </div>
+    <div class="field">
+      <%= f.label "Kontonummer:" %><br />
+      <%= f.text_field :bankaccount %>
+    </div>
+    <br />
+  </div>
+  <div class="actions">
+    <%=f.submit "Übernehmen"%>
+  </div>
+<%end%>

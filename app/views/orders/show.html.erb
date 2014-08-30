@@ -1,0 +1,38 @@
+<table>
+  <td>
+    <div id="aktion2">      
+      <h1 class="aktion1">Bestelldetails</h1>
+      <table>
+        <td><br />
+          <div class="order_">
+            <% if @order.user_id == current_user.id %>
+              <div class="tab_"><%= "Bestellnummer: " %></div><%= @order.order_no %><br />
+              <div class="tab_"><%= "Bestelldatum: " %></div><%= @order.o_date.strftime("%d.%m.%Y") %><br /> 
+              <br /> 
+              <% netz_id = Tariff.find(:first, :conditions => "id = " + @order.tariff_id.to_s).netz_id  %>
+              <div class="tab_"><%= "Netz: " %></div><%= Netz.find(:first, :conditions => "id = " + netz_id.to_s).n_name %><br /> 
+              <div class="tab_"><%= "Tarif: " %></div><%= Tariff.find(:first, :conditions => "id = " + @order.tariff_id.to_s).t_name %><br />
+              <div class="tab_"><%= "Grundgebühr: " %></div><%= number_to_currency(Tariff.find(:first, :conditions => "id = " + @order.tariff_id.to_s).t_costs) %>
+              <br />
+              <br />
+              <div class="tab_"><%= "Handy: " %></div><%= Phone.find(:first, :conditions => "id = " + @order.phone_id.to_s).p_brand + " " + Phone.find(:first, :conditions => "id = " + @order.phone_id.to_s).p_typ %>
+              <br />
+              <div class="tab_"><%= "Preis: " %></div><%= number_to_currency(@order.o_price) %>
+              <br />
+              <br />
+              <div class="tab_"><%= "Bank: " %></div><%= @order.bank %><br />
+              <div class="tab_"><%= "Bankleitzahl: " %></div><%= @order.bankzip %><br />
+              <div class="tab_"><%= "Kontonummer: " %></div><%= @order.bankaccount %><br />
+              <br />
+              <br />
+            <% else %>
+              <%= "Bestellung leider nicht gefunden." %>
+              <br />
+              <br />
+            <% end %>
+          </div>
+        </td>
+      </table>      
+    </div>
+  </td>
+</table>

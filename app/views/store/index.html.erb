@@ -1,0 +1,72 @@
+<!-- 1. Aktionsteil Handys: -->
+<table>
+  <td>
+    <div id="aktion1">
+      <h1 class="aktion1">Top-Handys für jeden Geschmack ...</h1>
+      <br />
+      <% Tariff.where("t_commission - t_profit > 0").sort_by{ :v_price }.last(1).each do |tariff| %>
+        <% Phone.where("id <> 0").sort_by{ rand }.first(4).each do |phone| %>
+          <table class="aktion1">
+            <td class="aktion1" ONCLICK = "location.href='<%= phones_path %>/<%= phone.id %>';">
+              <%= image_tag(phone.p_image_url) %>
+              <h1 class="inbox1">
+                <%= phone.p_brand + " " + phone.p_typ %>
+                <br />
+                <% if phone.p_price - tariff.v_price < 0 %>
+                  <% p = 1 %>
+                <% else %>
+                  <% p = phone.p_price - tariff.v_price %>
+                <% end %>
+                <%= "ab" + " " + number_to_currency(p) %>
+              </h1>
+            </td>
+          </table>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</table>
+
+<!-- 2. Aktionsteil Netze: -->
+<table>
+  <td>
+    <div id="aktion1">
+      <h1 class="aktion1">Alle Netze unter einem Dach ...</h1>
+      <br />
+      <% Netz.where("id <> 0").sort_by{ rand }.first(4).each do |netz| %>
+        <table class="aktion1">
+          <td class="aktion1" ONCLICK = "location.href='<%= netzs_path %>/<%= netz.id %>';">
+            <%= image_tag(netz.n_logo_url) %>
+            <h1 class="inbox1"><%= netz.n_name %></h1>
+          </td>
+        </table>  
+      <% end %>
+    </div>
+  </td>
+</table>
+
+<!-- 3. Aktionsteil Tarife: -->
+<table>
+  <td>
+    <div id="aktion2">
+      <h1 class="aktion1">Für jeden der passende Tarif ...</h1>
+      <br />
+      <% Tariff.where("id <> 0").sort_by{ rand }.first(4).each do |tariff| %>
+        <table class="aktion1">
+          <td class="aktion1" ONCLICK = "location.href='<%= tariffs_path %>/<%= tariff.id %>';">
+            <%= truncate(tariff.t_comment, length: 100) %><br />
+            <%=image_tag(Netz.find(:first, :conditions => "id = " + tariff.netz_id.to_s).n_logo_url) %>
+            <h1 class="inbox1"><%= tariff.t_name %>
+              <br />
+              <%= Netz.find(:first, :conditions => "id = " + tariff.netz_id.to_s).n_name %>
+              <br /><%= "Monatlich " + number_to_currency(tariff.t_costs) %>
+            </h1>
+          </td>
+        </table>
+      <% end %>
+    </div>
+  </td>
+</table>
+
+
+

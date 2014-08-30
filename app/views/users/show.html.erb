@@ -1,0 +1,98 @@
+<table>
+  <td>
+    <div id="aktion2">      
+      <h1 class="aktion1">Account</h1>
+      <table>
+        <td  width="500px">
+          <%= form_for @user do |f| %>
+            <% if @user.errors.any? %>
+                <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <%end%>
+                </ul>
+            <% end %>
+            <br />
+            <div class="order_">
+              <h4>Zugangsdaten:</h4>
+              <div class="field">
+                <%= f.label "Email:" %><br />
+                <%= f.text_field :email, :disabled => true  %>
+              </div>
+              <div class="field">
+                <%= f.label "Passwort:" %><br />
+                <%= text_field_tag "","******", :disabled => true  %>
+              </div>
+              <br />
+              <h4>Persönliche Daten:</h4>
+              <div class="field">
+                <%= f.label "Anrede:" %><br />
+                <%= f.text_field :title, :disabled => true %>
+              </div>
+              <div class="field">
+                <%= f.label "Vorname:" %><br />
+                <%= f.text_field :prename, :disabled => true %>
+              </div>
+              <div class="field">
+                <%= f.label "Nachname:" %><br />
+                <%= f.text_field :surname, :disabled => true %>
+              </div>
+              <div class="field">
+                <%= f.label "Geburtsdatum:" %><br />
+                <%= f.date_select :birth_date, :disabled => true %>
+              </div>
+              <br />
+              <h4>Anschrift:</h4>
+              <div class="field">
+                <%= f.label "Straße:" %><br />
+                <%= f.text_field :street, :disabled => true  %>
+              </div>
+              <div class="field">
+                <%= f.label "Postleitzahl" %><br />
+                <%= f.text_field :zip, :disabled => true  %>
+              </div>
+              <div class="field">
+                <%= f.label "Stadt" %><br />
+                <%= f.text_field :city, :disabled => true  %>
+              </div>
+              <br />
+              <h4>Bankverbindung:</h4>
+              <div class="field">
+                <%= f.label "Bank:" %><br />
+                <%= f.text_field :bank, :disabled => true  %>
+              </div>
+              <div class="field">
+                <%= f.label "Bankleitzahl:" %><br />
+                <%= f.text_field :bankzip, :disabled => true  %>
+              </div>
+              <div class="field">
+                <%= f.label "Kontonummer:" %><br />
+                <%= f.text_field :bankaccount, :disabled => true  %>
+              </div>
+              <br />
+            </div>
+          <%end%>
+          <%= button_to 'Bearbeiten', edit_user_path(@user), :method => :get %>
+          <br />
+        </td>
+        <td width="400px"; style="vertical-align:top";>
+          <br />
+          <div class="order_">
+            <h4>Bisherige Bestellungen:</h4>
+            <div class="field">
+              <span style="width:100px;display:block;float:left;"><%= "Datum:" %></span>
+              <%= "Bestellnummer:" %>
+              <br />
+            </div>
+          </div>
+          <% Order.where(:user_id => current_user.id).sort_by{ |order| [order.o_date] }.each do |order| %>
+            <span style="width:100px;display:block;float:left;"><%= order.o_date.strftime("%d.%m.%Y") %></span>
+            <%= link_to order.order_no, order %>
+            <br />
+          <% end %>
+        </td>
+      </table>      
+    </div>
+  </td>
+</table>
+<br />

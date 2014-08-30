@@ -1,0 +1,31 @@
+<div id="navigation-wrapper">
+	<div id="navigation-wrapper-2">
+		<div class="center-wrapper">	
+			<div id="navigation">
+				<ul class="tabbed">
+					<li <%= raw(current_page?(root_url) ? 'class="current_page_item"' : '') %>><%= link_to 'Start', root_path %></li>
+					<li <%= raw(request.fullpath.include?(phones_path) ? 'class="current_page_item"' : '') %>><%= link_to 'Handys', phones_path %></li>
+					<li <%= raw(request.fullpath.include?(netzs_path) ? 'class="current_page_item"' : '') %>><%= link_to 'Netze', netzs_path %></li>
+					<li <%= raw(request.fullpath.include?(tariffs_path) ? 'class="current_page_item"' : '') %>><%= link_to 'Tarife', tariffs_path %></li>
+					<li <%= raw(request.fullpath.include?(carts_path) || request.fullpath.include?(orders_path) ? 'class="current_page_item"' : '') %>>
+						<div class="cart">
+							<% if @cart.nil? || @cart.total_item == 0 %>
+								<%= link_to "Warenkorb ist leer", '#' %>
+							<% else %>
+								<% @cart.line_items.each do |item| %>
+			            <% if item.p_price - item.tariff.v_price <= 0 %>
+			              <% p = 1 %>
+			            <% else %>
+			              <% p = item.p_price - item.tariff.v_price %>
+			            <% end %>
+									<%= link_to "Warenkorb (#{number_to_currency(p)})", @cart %>
+								<% end %>
+							<% end %>
+						</div>
+					</li>
+				</ul>
+				<div class="clearer">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+</div>

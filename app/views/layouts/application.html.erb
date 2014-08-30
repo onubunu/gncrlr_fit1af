@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>gncrlrFit1af</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="top">
+
+<%= render :partial => 'layouts/header' %>
+
+<%= render :partial => 'layouts/navigation' %>
+
+
+<div id="content-wrapper">
+	<div class="center-wrapper">
+		
+		<div class="content">
+
+			<div id="main">
+
+				<%= render :partial => 'layouts/flash' %>
+				
+				<% if current_page?(root_url) %>
+					<div class = "back_" >&nbsp;</div>
+    			<% else %>
+					<div class = "back_" ><%= link_to 'Zurück', :back %></div>
+    			<% end %>
+
+				<%= yield %>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<%= render :partial => 'layouts/footer' %>
+
+<div id="bottom">
+
+	<div class="center-wrapper">
+
+		<div class="right">
+			<a href="http://templates.arcsin.se/">Website template</a> by <a href="http://arcsin.se/">Arcsin</a> 
+		</div>
+		
+		<div class="clearer">&nbsp;</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
+

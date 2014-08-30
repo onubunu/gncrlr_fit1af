@@ -1,0 +1,25 @@
+<table>
+  <td>
+    <div id="aktion1">
+      <h1 class="aktion1">Top-Handys für jeden Geschmack ...</h1><br />
+      <% Tariff.where("t_commission - t_profit > 0").sort_by{ :v_price }.first(1).each do |tariff| %>
+        <% Phone.where("id <> 0").sort_by{ |phone| [phone.p_brand, phone.p_typ]  }.each do |phone| %>
+          <table class="aktion1">
+            <td class="aktion1" ONCLICK = "location.href='<%= phones_path %>/<%= phone.id %>';">
+              <%= image_tag(phone.p_image_url) %>
+              <h1 class="inbox1"><%= phone.p_brand + " " + phone.p_typ %><br />
+              <% if phone.p_price - tariff.v_price < 0 %>
+                <% p = 1 %>
+              <% else %>
+                <% p = phone.p_price - tariff.v_price %>
+              <% end %>
+              <%= "ab" + " " + number_to_currency(p) %></h1>
+            </td>
+          </table>  
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</table>
+
+

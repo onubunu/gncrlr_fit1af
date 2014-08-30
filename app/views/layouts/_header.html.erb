@@ -1,0 +1,41 @@
+<div id="header-wrapper">
+	<div id="header-wrapper-2">
+		<div class="center-wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1 id="site-title"><%= link_to(image_tag("logo.gif"), root_url, title: "FIT1AF") %></h1>
+					<div id="h_logo_">
+						<%= image_tag("h_logos/samsung.jpg") %>
+						<%= image_tag("h_logos/htc.jpg") %>
+						<%= image_tag("h_logos/apple.jpg") %>
+						<%= image_tag("h_logos/sony.jpg") %>
+						<%= image_tag("h_logos/lg.jpg") %>
+						<%= image_tag("h_logos/nokia.jpg") %>
+			    	</div>
+					<h2 id="site-slogan">
+						<br />
+						<% if current_user %>
+							<%= "Hallo" + " " + current_user.title + " " + 
+							current_user.prename + " " + current_user.surname %>
+						<% else %>
+							<%= "Sie sind nicht angemeldet!" %>     
+						<% end %>
+					</h2>
+				</div>
+				<div id="help-wrapper">
+					<div id="help">
+						<% if current_user %>
+							<%= link_to "Abmelden", logout_path %>
+							<span class="text-separator">|</span>
+							<%= link_to "Konto", user_path(current_user)%>
+						<% else %>
+							<%= link_to "Anmelden", login_path %>
+							<span class="text-separator">|</span>
+							<%= link_to "Registrieren", signup_path %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

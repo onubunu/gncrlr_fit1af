@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  t_name: MyString
+  t_comment: MyText
+  net_id: 1
+  t_commission: 1
+  t_profit: 1
+  t_info: MyText
+  t_costs: 1
+
+two:
+  t_name: MyString
+  t_comment: MyText
+  net_id: 1
+  t_commission: 1
+  t_profit: 1
+  t_info: MyText
+  t_costs: 1

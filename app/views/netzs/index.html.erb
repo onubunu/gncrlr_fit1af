@@ -1,0 +1,27 @@
+<table>
+  <td>
+    <div id="aktion1">
+      <% Netz.where("id <> 0").sort_by{ rand }.each do |netz| %>
+        <h1 class="aktion1"><%= netz.n_name %></h1>
+        <br />        
+        <table class="aktion1">
+          <td class="aktion1" ONCLICK = "location.href='<%= netzs_path %>/<%= netz.id %>';">
+            <%= image_tag(netz.n_logo_url) %>
+            <h1 class="inbox1"><%= netz.n_name %></h1>
+          </td>
+        </table>        
+        <table class="solobox_comm">
+          <td>
+            <%= netz.n_comment %>
+          </td>
+        </table>        
+        <br />
+        <br />
+      <% end %>
+    </div>
+  </td>
+</table>
+
+
+
+

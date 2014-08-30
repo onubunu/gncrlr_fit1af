@@ -1,0 +1,25 @@
+<table>
+  <td>
+    <div id="aktion1">      
+      <h1 class="aktion1">Anmelden</h1>
+      <br />
+      <table>
+        <td>
+          <%= form_tag sessions_path do %>
+            <div class="field">
+              <%= label_tag "Email:" %><br />
+              <%= text_field_tag :email, params[:email] %>
+            </div>
+            <div class="field">
+              <%= label_tag "Passwort:" %><br />
+              <%= password_field_tag :password %>
+            </div>
+            <div class="field">
+              <%= submit_tag "Anmelden" %>
+            </div>
+          <% end %>
+        </td>
+      </table>      
+    </div>
+  </td>
+</table>

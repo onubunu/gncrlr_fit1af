@@ -1,0 +1,87 @@
+<table>
+    <td>
+      <div id="aktion2">
+        <% @cart.line_items.each do |item| %>
+          <h1 class="aktion1">Warenkorb: &nbsp;&nbsp;<%= Netz.find(:first, :conditions => "id = " + item.tariff.netz_id.to_s).n_name + " " + item.tariff.t_name + " mit " + item.phone.p_brand + " " + item.phone.p_typ %></h1>
+          <table class="aktion2">
+            <td class="aktion2">
+              <%= truncate(item.tariff.t_comment, length: 100) %>
+              <br />
+              <%=image_tag(Netz.find(:first, :conditions => "id = " + item.tariff.netz_id.to_s).n_logo_url) %>
+              <h1 class="inbox2">
+                <%= item.tariff.t_name %>
+                <br />
+                <%= Netz.find(:first, :conditions => "id = " + item.tariff.netz_id.to_s).n_name %><br /><%= "Monatlich " + number_to_currency(item.tariff.t_costs) %>
+                <br />
+                <div class="minitxt">
+                  <%= link_to "Tarifinfo", tariff_path(item.tariff.id) %>
+                </div>
+              </h1>
+            </td>
+            <br />
+          </table>
+        <% end %>
+      </div>
+
+      <div>      
+          <table class="cart1">
+            <td class="cart1">+
+            </td>
+          </table>
+      </div>
+
+      <div id="aktion1">
+        <% @cart.line_items.each do |item| %>
+          <table class="aktion2">
+            <td class="aktion2">
+              <%= image_tag(item.phone.p_image_url) %>
+              <h1 class="inbox2">
+                <%= item.phone.p_brand %>
+                <br />
+                <%= item.phone.p_typ %>
+                <br />
+                <div class="minitxt">
+                  <%= link_to "Handyinfo", phone_path(item.phone.id) %>
+                </div>
+              </h1>
+            </td>
+          </table>
+        <% end %>
+      </div>
+
+      <div>      
+        <table class="cart1">
+          <td class="cart1">
+            =
+          </td>
+        </table>
+      </div>
+
+      <div>      
+        <table class="cart2">
+          <td class="cart2">
+            <% @cart.line_items.each do |item| %>
+              <% if item.p_price - item.tariff.v_price <= 0 %>
+                <% p = 1 %>
+              <% else %>
+                <% p = item.p_price - item.tariff.v_price %>
+              <% end %>
+              <%= number_to_currency(p) %>
+            <% end %>
+            <h1 class="cart2">
+              <%= button_to "Warenkorb leeren", @cart, method: :delete, confirm: "Soll der Warenkorb wirklich geleert werden?" %>
+              <% if current_user %>
+                <%= button_to "Bestellen", new_order_path, method: :get %>    
+              <% else %>
+                <%= link_to "Anmelden", login_path %>&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to "Registrieren", signup_path %>
+              <% end %>
+            </h1>
+          </td>
+        </table>
+      </div>
+    </td>
+  </table>
+
+
+

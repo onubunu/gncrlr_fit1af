@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  p_typ: MyString
+  p_brand: MyString
+  p_comment: MyText
+  p_price: 1
+  p_image_url: MyString
+
+two:
+  p_typ: MyString
+  p_brand: MyString
+  p_comment: MyText
+  p_price: 1
+  p_image_url: MyString

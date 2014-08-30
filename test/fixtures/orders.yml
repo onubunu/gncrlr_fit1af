@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  tariff_id: MyString
+  phone_id: MyString
+  o_price: 1
+  o_date: 2013-11-09 15:59:19
+  order_no: MyString
+  bank: MyString
+  bankzip: 1
+  bankaccount: 1
+  agbs: false
+
+two:
+  user_id: 1
+  tariff_id: MyString
+  phone_id: MyString
+  o_price: 1
+  o_date: 2013-11-09 15:59:19
+  order_no: MyString
+  bank: MyString
+  bankzip: 1
+  bankaccount: 1
+  agbs: false
